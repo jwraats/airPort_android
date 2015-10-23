@@ -3,7 +3,6 @@ package jwraats.jackevers.nl.airportandroid;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -31,11 +30,11 @@ public class AirportDatabaseHelper extends SQLiteAssetHelper{
 
         return instance;
     }
-
-    public Cursor getAirports(){
+    // iso country =  \"NL\"
+    public Cursor getAirports(String iso_country){
         SQLiteDatabase db = getReadableDatabase();
 
-        String query = "SELECT icao, name FROM airports WHERE iso_country = \"NL\"";
+        String query = "SELECT icao, name FROM airports WHERE iso_country = " + iso_country;
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
 

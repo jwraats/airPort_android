@@ -1,7 +1,9 @@
 package jwraats.jackevers.nl.airportandroid;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,6 +13,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Cursor cursor = AirportDatabaseHelper.getInstance(this).getAirports("\"NL\"");
+
+        while(cursor.moveToNext())
+        {
+            String icao = cursor.getString(cursor.getColumnIndex("icao"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+
+            Log.i("Mainactivity", icao + " " + name);
+        }
+
+
     }
 
     @Override
