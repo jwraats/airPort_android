@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -55,10 +56,23 @@ public class AirportAdapter extends BaseAdapter {
 
         if(null == convertView)
         {
+            //get data
+            cursor.moveToFirst();
+            cursor.move(position);
+
+            String icao = cursor.getString(cursor.getColumnIndex("icao"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+
+            //inflate and put data
             convertView = mInflator.inflate(android.R.layout.simple_list_item_2, null);
 
-            convertView // TODO Fill view
+            TextView tv1 = (TextView) convertView.findViewById(android.R.id.text1);
+            tv1.setText(name);
 
+            TextView tv2 = (TextView) convertView.findViewById(android.R.id.text2);
+            tv2.setText(icao);
+
+            return convertView;
         }
 
 
