@@ -14,17 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Cursor cursor = AirportDatabaseHelper.getInstance(this).getAirports("\"NL\"");
-
-        while(cursor.moveToNext())
-        {
-            String icao = cursor.getString(cursor.getColumnIndex("icao"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-
-            Log.i("Mainactivity", icao + " " + name);
-        }
-
-
     }
 
     @Override

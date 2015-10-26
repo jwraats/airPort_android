@@ -5,7 +5,7 @@ package jwraats.jackevers.nl.airportandroid;
  */
 public class Airport {
 
-    private String icao, name, isoCountry, municipality;
-    private double elevation;
-    private double latitude, longitude;
+    public String icao, name, isoCountry, municipality;
+    public double elevation;
+    public double latitude, longitude;
 }
