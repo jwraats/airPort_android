@@ -109,14 +109,14 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         }
 
         cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("NL");
-
-        while(cursor.moveToNext())
-        {
-            String icao = cursor.getString(cursor.getColumnIndex("icao"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-
-            Log.i("Mainactivity", icao + " " + name);
-        }
+//
+//        while(cursor.moveToNext())
+//        {
+//            String icao = cursor.getString(cursor.getColumnIndex("icao"));
+//            String name = cursor.getString(cursor.getColumnIndex("name"));
+//
+//            Log.i("Mainactivity", icao + " " + name);
+//        }
     }
 
     @Override
@@ -130,7 +130,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(((Airport)mAdapter.getItem(position)).icao);
+            mListener.onFragmentInteraction((Airport)mAdapter.getItem(position));
         }
     }
 
@@ -159,7 +159,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        public void onFragmentInteraction(Airport ap);
     }
 
 }

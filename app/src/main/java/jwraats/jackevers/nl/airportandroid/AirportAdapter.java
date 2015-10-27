@@ -40,14 +40,9 @@ public class AirportAdapter extends BaseAdapter {
         cursor.moveToFirst();
         cursor.move(position);
 
-        String icao = cursor.getString(cursor.getColumnIndex("icao"));
-        String name = cursor.getString(cursor.getColumnIndex("name"));
+        Log.d("AirportAdapter", "getItem Position: " + position);
 
-        Airport ap = new Airport();
-        ap.icao = icao;
-        ap.name = name;
-
-        return ap;
+        return Airport.createAirport(cursor);
     }
 
     @Override
@@ -59,22 +54,16 @@ public class AirportAdapter extends BaseAdapter {
 //        if(null == convertView)
 //        {
             //get data
-            cursor.moveToFirst();
-            cursor.move(position);
-
-            Log.i("AirportAdapter", "getViewPosition: " + position);
-
-            String icao = cursor.getString(cursor.getColumnIndex("icao"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
+            Airport ap = (Airport)getItem(position);
 
             //inflate and put data
             convertView = mInflator.inflate(android.R.layout.simple_list_item_2, null);
 
             TextView tv1 = (TextView) convertView.findViewById(android.R.id.text1);
-            tv1.setText(name);
+            tv1.setText(ap.name);
 
             TextView tv2 = (TextView) convertView.findViewById(android.R.id.text2);
-            tv2.setText(icao);
+            tv2.setText(ap.icao);
 
             return convertView;
 //        }

@@ -11,13 +11,10 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements AirportCollectionFragment.OnFragmentInteractionListener {
 
     @Override
-    public void onFragmentInteraction(String id) {
+    public void onFragmentInteraction(Airport ap) {
 
-        Log.i("MainActivity", "onFragmentInteraction: " + id);
+        Log.i("MainActivity", "onFragmentInteraction: " + ap.toString());
 
-        Cursor c = AirportDatabaseHelper.getInstance(this).getAirportByIcao(id);
-
-        Airport ap = Airport.createAirport(c);
     }
 
     @Override

@@ -11,6 +11,19 @@ public class Airport {
     public double elevation;
     public double latitude, longitude;
 
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "icao='" + icao + '\'' +
+                ", name='" + name + '\'' +
+                ", isoCountry='" + isoCountry + '\'' +
+                ", municipality='" + municipality + '\'' +
+                ", elevation=" + elevation +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
+
     public static Airport createAirport(Cursor c)
     {
         String icao = c.getString(c.getColumnIndex("icao"));
@@ -26,9 +39,20 @@ public class Airport {
         ap.name = name;
         ap.isoCountry = isoCountry;
         ap.municipality = municipality;
-        ap.elevation = Double.parseDouble(elevation);
-        ap.latitude = Double.parseDouble(latitude);
-        ap.longitude = Double.parseDouble(longitude);
+        if(0 != elevation.length())
+            ap.elevation = Double.parseDouble(elevation);
+        else
+            ap.elevation = 0.0;
+
+        if(0 != latitude.length())
+            ap.latitude = Double.parseDouble(latitude);
+        else
+            ap.latitude = 0.0;
+
+        if(0 != longitude.length())
+            ap.longitude = Double.parseDouble(longitude);
+        else
+            ap.longitude = 0.0;
 
         return ap;
     }
