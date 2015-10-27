@@ -41,4 +41,15 @@ public class AirportDatabaseHelper extends SQLiteAssetHelper{
         return c;
     }
 
+    public Cursor getAirportByIcao(String icao)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT icao, name, isoCountry, municipality, elevation, latitude, longitude FROM airports WHERE icao =" + icao;
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+
+        return c;
+    }
+
 }

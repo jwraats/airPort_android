@@ -14,6 +14,10 @@ public class MainActivity extends AppCompatActivity implements AirportCollection
     public void onFragmentInteraction(String id) {
 
         Log.i("MainActivity", "onFragmentInteraction: " + id);
+
+        Cursor c = AirportDatabaseHelper.getInstance(this).getAirportByIcao(id);
+
+        Airport ap = Airport.createAirport(c);
     }
 
     @Override
