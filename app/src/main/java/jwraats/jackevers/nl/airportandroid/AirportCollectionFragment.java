@@ -67,15 +67,6 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
      */
     public AirportCollectionFragment() {
 
-        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("\"NL\"");
-
-        while(cursor.moveToNext())
-        {
-            String icao = cursor.getString(cursor.getColumnIndex("icao"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-
-            Log.i("Mainactivity", icao + " " + name);
-        }
 
     }
 
@@ -98,7 +89,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         View view = inflater.inflate(R.layout.fragment_airport, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
+        mListView = (AbsListView) view.findViewById(R.id.AirportListview);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
@@ -116,6 +107,16 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
+        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("\"NL\"");
+
+        while(cursor.moveToNext())
+        {
+            String icao = cursor.getString(cursor.getColumnIndex("icao"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+
+            Log.i("Mainactivity", icao + " " + name);
+        }
     }
 
     @Override
@@ -129,7 +130,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(AirportListContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(((Airport)mAdapter.getItem(position)).icao);
         }
     }
 

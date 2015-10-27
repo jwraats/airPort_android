@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="jwraats.jackevers.nl.airportandroid.AirportCollectionFragment">
 
-    <ListView android:id="@+id/listView" android:layout_width="match_parent"
+    <ListView android:id="@+id/AirportListview" android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 </FrameLayout>

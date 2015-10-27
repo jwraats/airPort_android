@@ -2,6 +2,7 @@ package jwraats.jackevers.nl.airportandroid;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,16 @@ public class AirportAdapter extends BaseAdapter {
 
     public AirportAdapter(LayoutInflater layoutInflater, String iso_country) {
         cursor = AirportDatabaseHelper.getInstance(mContext).getAirports(iso_country);
+
         cursor.moveToFirst();
+
+        mInflator = layoutInflater;
+
+        Log.i("AirportAdapter", "getCount: " + cursor.getCount());
     }
 
     @Override
-    public int getCount() {
-        return cursor.getCount();
-    }
+    public int getCount() { return cursor.getCount(); }
 
     @Override
     public Object getItem(int position) {
@@ -47,18 +51,18 @@ public class AirportAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if(null == convertView)
-        {
+//        if(null == convertView)
+//        {
             //get data
             cursor.moveToFirst();
             cursor.move(position);
+
+            Log.i("AirportAdapter", "getViewPosition: " + position);
 
             String icao = cursor.getString(cursor.getColumnIndex("icao"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
@@ -73,9 +77,9 @@ public class AirportAdapter extends BaseAdapter {
             tv2.setText(icao);
 
             return convertView;
-        }
-
-
-        return null;
+//        }
+//
+//
+//        return convertView;
     }
 }

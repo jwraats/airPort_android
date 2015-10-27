@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:name="jwraats.jackevers.nl.airportandroid.AirportCollectionFragment"
         android:id="@+id/fragment"
+        tools:layout="@layout/fragment_airport_list"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        tools:layout="@layout/fragment_airport_list" />
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
