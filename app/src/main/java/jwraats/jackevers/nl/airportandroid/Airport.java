@@ -15,7 +15,7 @@ public class Airport {
     {
         String icao = c.getString(c.getColumnIndex("icao"));
         String name = c.getString(c.getColumnIndex("name"));
-        String isoCountry = c.getString(c.getColumnIndex("isoCountry"));
+        String isoCountry = c.getString(c.getColumnIndex("iso_country"));
         String municipality = c.getString(c.getColumnIndex("municipality"));
         String elevation = c.getString(c.getColumnIndex("elevation"));
         String latitude = c.getString(c.getColumnIndex("latitude"));

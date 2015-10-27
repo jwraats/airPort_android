@@ -80,7 +80,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new AirportAdapter(getActivity().getLayoutInflater(),"\"NL\"");
+        mAdapter = new AirportAdapter(getActivity().getLayoutInflater(),"NL");
     }
 
     @Override
@@ -108,7 +108,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
                     + " must implement OnFragmentInteractionListener");
         }
 
-        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("\"NL\"");
+        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("NL");
 
         while(cursor.moveToNext())
         {
