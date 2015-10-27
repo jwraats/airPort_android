@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements AirportCollection
     @Override
     public void onFragmentInteraction(Airport ap) {
         Log.i("MainActivity", "onFragmentInteraction: " + ap.toString());
+
+        startActivity(new Intent(MainActivity.this, AirportDetailsActivity.class));
     }
 
     @Override
