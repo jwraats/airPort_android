@@ -80,13 +80,15 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new AirportAdapter(getActivity().getLayoutInflater(),"NL");
+        mAdapter = new AirportAdapter(getActivity().getLayoutInflater());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_airport, container, false);
+
+        Log.d("AirportCollectionFragme", "onCreateView called!");
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(R.id.AirportListview);
@@ -108,7 +110,8 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
                     + " must implement OnFragmentInteractionListener");
         }
 
-        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports("NL");
+        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports();
+
 //
 //        while(cursor.moveToNext())
 //        {

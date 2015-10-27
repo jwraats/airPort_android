@@ -22,14 +22,11 @@ public class AirportAdapter extends BaseAdapter {
 
     Cursor cursor;
 
-    public AirportAdapter(LayoutInflater layoutInflater, String iso_country) {
-        cursor = AirportDatabaseHelper.getInstance(mContext).getAirports(iso_country);
-
-        cursor.moveToFirst();
+    public AirportAdapter(LayoutInflater layoutInflater) {
+        cursor = AirportDatabaseHelper.getInstance(mContext).getAirports();
+        Log.i("AirportAdapter", "getCount: " + cursor.getCount());
 
         mInflator = layoutInflater;
-
-        Log.i("AirportAdapter", "getCount: " + cursor.getCount());
     }
 
     @Override
@@ -37,12 +34,7 @@ public class AirportAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        cursor.moveToFirst();
-        cursor.move(position);
-
-        Log.d("AirportAdapter", "getItem Position: " + position);
-
-        return Airport.createAirport(cursor);
+       return AirportDatabaseHelper.getInstance(mContext).getItem(position);
     }
 
     @Override
