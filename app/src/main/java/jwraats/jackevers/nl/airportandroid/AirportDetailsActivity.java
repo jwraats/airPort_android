@@ -1,5 +1,6 @@
 package jwraats.jackevers.nl.airportandroid;
 
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -10,9 +11,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class AirportDetailsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class AirportDetailsActivity extends FragmentActivity implements OnMapReadyCallback, AirportDetailsPaneFragment.OnFragmentInteractionListener {
 
     private GoogleMap mMap;
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,47 +10,13 @@
     tools:context="jwraats.jackevers.nl.airportandroid.AirportDetailsActivity"
     android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-    <TabHost
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tabHost"
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="jwraats.jackevers.nl.airportandroid.AirportDetailsPaneFragment"
+        android:id="@+id/fragment2"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TabWidget>
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
-            </FrameLayout>
-        </LinearLayout>
-    </TabHost>
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/fragment_airport_details_pane" />
 
 </RelativeLayout>
