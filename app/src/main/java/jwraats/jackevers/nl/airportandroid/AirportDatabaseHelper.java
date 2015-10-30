@@ -17,7 +17,7 @@ public class AirportDatabaseHelper extends SQLiteAssetHelper{
     private static final String DATABASE_NAME = "airports.sqlite";
     private static final int DATABASE_VERSION = 1;
 
-    private String selectedCountryIso = "NL";
+    private String selectedCountryIso = "US";
 
     private Cursor c;
 

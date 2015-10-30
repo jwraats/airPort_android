@@ -12,7 +12,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -66,14 +68,20 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
 
             // Add a marker and move the camera
             Marker destinationMarker = mMap.addMarker(new MarkerOptions().position(destination).title("Marker in Sydney"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(destination));
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
 
             Marker currentLocationMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude())));
+            currentLocationMarker.setIcon(BitmapDescriptorFactory.fromResource(android.R.drawable.ic_menu_mylocation));
 
-            mMap.addPolyline(new PolylineOptions().add(currentLocationMarker.getPosition(), destinationMarker.getPosition() ));
+            mMap.addPolyline(new PolylineOptions().add(currentLocationMarker.getPosition(), destinationMarker.getPosition()).geodesic(true));
 
-            //TODO set camera zoonlevel and location to display both markers and the drawn path
+            //build bounds that fit the two markers for the camera to look at
+            LatLngBounds.Builder builder =  new LatLngBounds.Builder();
+            builder.include(currentLocationMarker.getPosition());
+            builder.include(destinationMarker.getPosition());
+
+            LatLngBounds cameraBounds = builder.build();
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraBounds, 100));
         }
     }
 }
