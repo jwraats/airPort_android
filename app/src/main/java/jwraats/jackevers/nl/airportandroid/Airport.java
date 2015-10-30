@@ -1,15 +1,58 @@
 package jwraats.jackevers.nl.airportandroid;
 
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by jack on 20-10-2015.
  */
-public class Airport {
+public class Airport implements Parcelable {
 
     public String icao, name, isoCountry, municipality;
     public double elevation;
     public double latitude, longitude;
+
+    protected Airport(Parcel in) {
+        icao = in.readString();
+        name = in.readString();
+        isoCountry = in.readString();
+        municipality = in.readString();
+        elevation = in.readDouble();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+    }
+
+    public static final Creator<Airport> CREATOR = new Creator<Airport>() {
+        @Override
+        public Airport createFromParcel(Parcel in) {
+            return new Airport(in);
+        }
+
+        @Override
+        public Airport[] newArray(int size) {
+            return new Airport[size];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(icao);
+        dest.writeString(name);
+        dest.writeString(isoCountry);
+        dest.writeString(municipality);
+        dest.writeDouble(elevation);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+    }
+
+    public Airport(){}
 
     @Override
     public String toString() {

@@ -48,8 +48,8 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
         Bundle extras = getIntent().getExtras();
         if(null != extras)
         {
-            double[] latLng = extras.getDoubleArray("LatLng");
-            destination = new LatLng(latLng[0],latLng[1]);
+            Airport ap = extras.getParcelable("Airport");
+            destination = new LatLng(ap.latitude, ap.longitude);
 
             // Add a marker and move the camera
             mMap.addMarker(new MarkerOptions().position(destination).title("Marker in Sydney"));
