@@ -19,7 +19,10 @@ public class MainActivity extends AppCompatActivity implements AirportCollection
     public void onFragmentInteraction(Airport ap) {
         Log.i("MainActivity", "onFragmentInteraction: " + ap.toString());
 
-        startActivity(new Intent(MainActivity.this, AirportDetailsActivity.class));
+        Intent intent = new Intent(MainActivity.this, AirportDetailsActivity.class);
+        intent.putExtra("LatLng", new double[]{ap.latitude,ap.longitude});
+
+        startActivity(intent);
     }
 
     @Override

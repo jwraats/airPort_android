@@ -44,9 +44,17 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng destination;
+        Bundle extras = getIntent().getExtras();
+        if(null != extras)
+        {
+            double[] latLng = extras.getDoubleArray("LatLng");
+            destination = new LatLng(latLng[0],latLng[1]);
+
+            // Add a marker and move the camera
+            mMap.addMarker(new MarkerOptions().position(destination).title("Marker in Sydney"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(destination));
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+        }
     }
 }
