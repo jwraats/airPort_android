@@ -3,4 +3,12 @@
     android:layout_height="match_parent"
     tools:context="jwraats.jackevers.nl.airportandroid.CountrySelectionActivity">
 
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="jwraats.jackevers.nl.airportandroid.countryFragment"
+        android:id="@+id/fragment3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/fragment_country_grid" />
 </RelativeLayout>

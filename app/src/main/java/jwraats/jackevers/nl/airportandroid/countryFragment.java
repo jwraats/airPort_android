@@ -1,17 +1,20 @@
 package jwraats.jackevers.nl.airportandroid;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import java.util.List;
+
+import jwraats.jackevers.nl.airportandroid.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -22,7 +25,7 @@ import android.widget.TextView;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class AirportCollectionFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class countryFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,12 +38,12 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
 
     private OnFragmentInteractionListener mListener;
 
-    Cursor cursor;
-
     /**
      * The fragment's ListView/GridView.
      */
     private AbsListView mListView;
+
+    private List<String> countryList;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
@@ -49,8 +52,8 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
     private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static AirportCollectionFragment newInstance(String param1, String param2) {
-        AirportCollectionFragment fragment = new AirportCollectionFragment();
+    public static countryFragment newInstance(String param1, String param2) {
+        countryFragment fragment = new countryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,9 +65,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public AirportCollectionFragment() {
-
-
+    public countryFragment() {
     }
 
     @Override
@@ -76,19 +77,19 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your content
-        mAdapter = new AirportAdapter(getActivity().getLayoutInflater());
+        countryList = AirportDatabaseHelper.getInstance(this.getActivity()).getCountryCodes();
+
+        mAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, countryList);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_airport, container, false);
-
-        Log.d("AirportCollectionFragme", "onCreateView called!");
+        View view = inflater.inflate(R.layout.fragment_country, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(R.id.AirportListview);
+        mListView = (AbsListView) view.findViewById(android.R.id.list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
@@ -106,17 +107,6 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-
-        cursor = AirportDatabaseHelper.getInstance(this.getActivity()).getAirports();
-
-//
-//        while(cursor.moveToNext())
-//        {
-//            String icao = cursor.getString(cursor.getColumnIndex("icao"));
-//            String name = cursor.getString(cursor.getColumnIndex("name"));
-//
-//            Log.i("Mainactivity", icao + " " + name);
-//        }
     }
 
     @Override
@@ -130,7 +120,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction((Airport)mAdapter.getItem(position));
+            mListener.onFragmentInteraction(countryList.get(position));
         }
     }
 
@@ -159,7 +149,7 @@ public class AirportCollectionFragment extends Fragment implements AbsListView.O
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Airport ap);
+        public void onFragmentInteraction(String id);
     }
 
 }

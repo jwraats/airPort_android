@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jack on 20-10-2015.
  */
@@ -17,7 +20,7 @@ public class AirportDatabaseHelper extends SQLiteAssetHelper{
     private static final String DATABASE_NAME = "airports.sqlite";
     private static final int DATABASE_VERSION = 1;
 
-    private String selectedCountryIso = "US";
+    private String selectedCountryIso = "NL";
 
     private Cursor c;
 
@@ -75,5 +78,21 @@ public class AirportDatabaseHelper extends SQLiteAssetHelper{
         Log.d("AirportAdapter", "getItem Position: " + position);
 
         return Airport.createAirport(c);
+    }
+
+    public List<String> getCountryCodes() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT DISTINCT iso_country FROM airports ORDER BY iso_country ASC";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+
+        List<String> countries = new ArrayList<String>();
+        do
+        {
+            countries.add(c.getString(c.getColumnIndex("iso_country")));
+        } while (c.moveToNext());
+
+        return countries;
     }
 }

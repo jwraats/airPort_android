@@ -1,4 +1,4 @@
-package jwraats.jackevers.nl.airportandroid.model;
+package jwraats.jackevers.nl.airportandroid.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
  * <p/>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class AirportListContent {
+public class DummyContent {
 
     /**
      * An array of sample (dummy) items.

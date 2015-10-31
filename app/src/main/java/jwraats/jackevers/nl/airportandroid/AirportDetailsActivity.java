@@ -67,7 +67,8 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
             destination = new LatLng(ap.latitude, ap.longitude);
 
             // Add a marker and move the camera
-            Marker destinationMarker = mMap.addMarker(new MarkerOptions().position(destination).title("Marker in Sydney"));
+            Marker destinationMarker = mMap.addMarker(new MarkerOptions().position(destination).title(ap.name));
+            destinationMarker.showInfoWindow();
 
             Marker currentLocationMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude())));
             currentLocationMarker.setIcon(BitmapDescriptorFactory.fromResource(android.R.drawable.ic_menu_mylocation));
@@ -81,7 +82,7 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
 
             LatLngBounds cameraBounds = builder.build();
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraBounds, 100));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraBounds, 800, 800, 200));
         }
     }
 }
