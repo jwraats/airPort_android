@@ -21,6 +21,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class AirportDetailsActivity extends FragmentActivity implements OnMapReadyCallback, AirportDetailsPaneFragment.OnFragmentInteractionListener {
 
+    private AirportDetailsPaneFragment fragment;
+
     private GoogleMap mMap;
     LocationManager locationManager;
     Location lastLocation;
@@ -43,6 +45,8 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION);
 
         lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        fragment = (AirportDetailsPaneFragment) getFragmentManager().findFragmentById(R.id.fragment2);
     }
 
 
@@ -64,6 +68,8 @@ public class AirportDetailsActivity extends FragmentActivity implements OnMapRea
         if(null != extras)
         {
             Airport ap = extras.getParcelable("Airport");
+            //set data in info fragment
+            fragment.setAp(ap);
             destination = new LatLng(ap.latitude, ap.longitude);
 
             // Add a marker and move the camera

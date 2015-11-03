@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -45,6 +46,15 @@ public class AirportDetailsPaneFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void setAp(Airport ap)
+    {
+        TextView textView1 = (TextView) this.getView().findViewById(R.id.textView);
+        textView1.setText(ap.name);
+
+        TextView textView2 = (TextView) this.getView().findViewById(R.id.textView2);
+        textView2.setText(ap.icao);
     }
 
     public AirportDetailsPaneFragment() {
